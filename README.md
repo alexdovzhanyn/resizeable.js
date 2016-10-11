@@ -1,7 +1,5 @@
 # Resizeable.js
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-
 Resizeable.js is a responsive library for easily creating grid layouts that work well on every device, without the need to re-organize the layout of the grid. It is (and always will be) free to use and open source under the GNU GENERAL PUBLIC LICENSE
 
 ### Prerequisites
@@ -99,4 +97,3 @@ GNU General Public License
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
    [jQuery]: <http://jquery.com>
-
