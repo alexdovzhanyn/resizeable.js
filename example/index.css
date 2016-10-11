@@ -1,0 +1,25 @@
+.resizeable-grid {
+	background: black;
+	width: 60%;
+	margin-left: 20%;
+	display: flex; 
+  flex-wrap: wrap;
+}
+
+.resizeable-item {
+	background: red;
+	border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  display: inline-block;
+}
+
+.col-1 {
+	width: 200px; 
+  padding-left: 0px;
+  margin-bottom: 38px;
+  transition: flex .7s;
+}
+
+.col-2 {
+	width: 400px; 
+}
