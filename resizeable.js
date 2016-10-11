@@ -1,44 +1,50 @@
-function resizeGridItems() {
-	var resizeableContainerWidth = $('.resizeable-container').width();
+// Set up our options variable, make it available to the window for other functions to use
+function initializeGrid(){
+	window.resizeableGridOptions = JSON.parse( $('.resizeable-container').attr('data-resizeable') );
+}
 
-	$('.resizeable-item').each(function(index, element){
-		if( $( window ).width() > 480 ){
-			if ( parseInt( $( element ).attr("data-postnum") ) > 1) {
-				$( element ).find('.post-thumbnail').css({'height': (resizeableContainerWidth / 3) * 0.6 + "px"});
-			} else {
-				$( element ).find('.post-thumbnail').css({'height': (resizeableContainerWidth / 3 - 0.1) * 0.85 + "px"});
-			}
-		} else {
-			$( element ).find('.post-thumbnail').css({'height': resizeableContainerWidth * 0.6 + "px"});
-		}
-	});
-
-	$('.resizeable-item.col-1').each(function(){
-		if( $( window ).width() > 480 ){
-			$( this ).css({'width': resizeableContainerWidth / 3 - 0.1 + "px"});
-		} else {
-			$( this ).css({'width': resizeableContainerWidth + "px"});
-		}
-	});
-
-	$('.resizeable-item.col-2').each(function(){
-		if( $( window ).width() > 480 ){
-			$( this ).css({'width': 2 * (resizeableContainerWidth / 3) - 0.2 + "px", 'padding': '0px'});
-			$( this ).removeClass('row');
-		} else {
-			$( this ).css({'width': resizeableContainerWidth + "px", 'padding': '30px'});
-			// $( this ).find('.post-thumbnail').css({'height': $( this ).width() * 0.85 + "px"});
-		}
-	});
-
-	if( $( window ).width() > 480 ){
-		$('.post.grid-item').each(function(){
-			$( this ).css({'borderLeft': resizeableContainerWidth * 0.015 + "px solid transparent", 'borderRight': resizeableContainerWidth * 0.015 + "px solid transparent"});
-		});
+// Return an object of element info that we need to do the sizing
+function getElementInfo(element, containerWidth) {
+	var gutterWidth = getGutterWidth(containerWidth) / 2;
+	debugger;
+	return {
+		usedWidth: gutterWidth
 	}
 }
 
+function getGutterWidth(containerWidth) {
+	return containerWidth * (resizeableGridOptions.gutter / 100);
+}
+
+function insertGutters(containerWidth) {
+	var gutterWidth = getGutterWidth(containerWidth);
+
+	// We shouldn't add gutters after the last post
+	$('.resizeable-row .resizeable-item:not(:last-child)').each(function(){
+		$(this).after('<div style="width: ' + gutterWidth + 'px;" class="resizeableGutter">&nbsp;</div>')
+	});
+}
+
+function resizeGridItems() {
+	var resizeableContainerWidth = $('.resizeable-container').width();
+	// Insert gutters between items
+	insertGutters(resizeableContainerWidth);
+
+	$('.resizeable-item.col-1').each(function(){
+		var currentElement = getElementInfo($(this), resizeableContainerWidth);
+
+		$( this ).css({'width': resizeableContainerWidth / resizeableGridOptions.columns  - currentElement.usedWidth + "px"});
+	});
+
+	$('.resizeable-item.col-2').each(function(){
+		var currentElement = getElementInfo( $(this), resizeableContainerWidth );
+		
+		$( this ).css({'width': 2 * (resizeableContainerWidth / resizeableGridOptions.columns - currentElement.usedWidth)  + "px", 'padding': '0px'});
+	});
+}
+
 $(document).ready(function(){
+	initializeGrid();
 	resizeGridItems();
 });
 

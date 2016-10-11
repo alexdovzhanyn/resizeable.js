@@ -1,4 +1,4 @@
-.resizeable-grid {
+.resizeable-container {
 	background: black;
 	width: 60%;
 	margin-left: 20%;
@@ -8,9 +8,13 @@
 
 .resizeable-item {
 	background: red;
-	border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
   display: inline-block;
+  float: left;
+}
+
+.resizeableGutter {
+	display: inline-block;
+	float: left;
 }
 
 .col-1 {
