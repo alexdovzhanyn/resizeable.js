@@ -1,12 +1,17 @@
 // Set up our options variable, make it available to the window for other functions to use
 function initializeGrid(){
-	window.resizeableGridOptions = JSON.parse( $('.resizeable-container').attr('data-resizeable') );
+	try {
+		window.resizeableGridOptions = JSON.parse( $('.resizeable-container').attr('data-resizeable') );
+	} catch(err) {
+		throw (
+			"Resizeable container is not defined. Try adding '.resizeable-container' to a container element."
+		)
+	}
 }
 
 // Return an object of element info that we need to do the sizing
 function getElementInfo(element, containerWidth) {
 	var gutterWidth = getGutterWidth(containerWidth) / 2;
-	debugger;
 	return {
 		usedWidth: gutterWidth
 	}

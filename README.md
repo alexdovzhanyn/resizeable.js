@@ -1,4 +1,5 @@
 [![GitHub version](https://badge.fury.io/gh/alexdovzhanyn%2Fresizeable.js.svg)](https://badge.fury.io/gh/alexdovzhanyn%2Fresizeable.js)
+[![Code Triagers Badge](https://www.codetriage.com/alexdovzhanyn/resizeable.js/badges/users.svg)](https://www.codetriage.com/alexdovzhanyn/resizeable.js)
 # Resizeable.js
 
 Resizeable.js is a responsive library for easily creating grid layouts that work well on every device, without the need to re-organize the layout of the grid. It is (and always will be) free to use and open source under the GNU GENERAL PUBLIC LICENSE
