@@ -1,20 +1,20 @@
+body {
+	background: #cecece;
+}
+
 .resizeable-container {
-	background: black;
+	background: #fff;
 	width: 60%;
 	margin-left: 20%;
-	display: flex; 
-  flex-wrap: wrap;
+	padding: 20px;
+	border-radius: 5px;
 }
 
 .resizeable-item {
-	background: red;
-  display: inline-block;
-  float: left;
+	background: #f0f0f0;
 }
 
 .resizeableGutter {
-	display: inline-block;
-	float: left;
 }
 
 .col-1 {
@@ -26,4 +26,9 @@
 
 .col-2 {
 	width: 400px; 
+}
+
+.page-title {
+	margin-bottom: 50px;
+	color: #e23c26;
 }

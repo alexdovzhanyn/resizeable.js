@@ -2,27 +2,31 @@
 function initializeGrid(){
 	try {
 		window.resizeableGridOptions = JSON.parse( $('.resizeable-container').attr('data-resizeable') );
+		window.resizeableContainerWidth = $('.resizeable-container').width();
 	} catch(err) {
 		throw (
 			"Resizeable container is not defined. Try adding '.resizeable-container' to a container element."
 		)
 	}
+
+	// Insert gutters between items
+	insertGutters();
 }
 
 // Return an object of element info that we need to do the sizing
-function getElementInfo(element, containerWidth) {
-	var gutterWidth = getGutterWidth(containerWidth) / 2;
+function getElementInfo(element) {
+	var gutterWidth = getGutterWidth(resizeableContainerWidth) / 2;
 	return {
 		usedWidth: gutterWidth
 	}
 }
 
-function getGutterWidth(containerWidth) {
-	return containerWidth * (resizeableGridOptions.gutter / 100);
+function getGutterWidth() {
+	return resizeableContainerWidth * (resizeableGridOptions.gutter / 100);
 }
 
-function insertGutters(containerWidth) {
-	var gutterWidth = getGutterWidth(containerWidth);
+function insertGutters() {
+	var gutterWidth = getGutterWidth();
 
 	// We shouldn't add gutters after the last post
 	$('.resizeable-row .resizeable-item:not(:last-child)').each(function(){
@@ -31,10 +35,6 @@ function insertGutters(containerWidth) {
 }
 
 function resizeGridItems() {
-	var resizeableContainerWidth = $('.resizeable-container').width();
-	// Insert gutters between items
-	insertGutters(resizeableContainerWidth);
-
 	$('.resizeable-item.col-1').each(function(){
 		var currentElement = getElementInfo($(this), resizeableContainerWidth);
 
@@ -42,7 +42,7 @@ function resizeGridItems() {
 	});
 
 	$('.resizeable-item.col-2').each(function(){
-		var currentElement = getElementInfo( $(this), resizeableContainerWidth );
+		var currentElement = getElementInfo( $(this) );
 		
 		$( this ).css({'width': 2 * (resizeableContainerWidth / resizeableGridOptions.columns - currentElement.usedWidth)  + "px", 'padding': '0px'});
 	});
