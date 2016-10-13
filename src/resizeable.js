@@ -56,7 +56,7 @@ function updateGridItems() {
 
 	$('.resizeable-row').each(function(){
 		var remainingSpace = getRemainingSpace(this);
-		$(this).css({'marginBottom': gutterWidth});
+		window.singleColumnWidth = remainingSpace / resizeableGridOptions.columns;
 
 		$(this).find('.resizeable-item.resizeable-col-' + screenSize + '-1').each(function(){
 			var currentElement = getElementInfo( $(this) );
@@ -67,6 +67,18 @@ function updateGridItems() {
 			var currentElement = getElementInfo( $(this) );
 			$( this ).css({'width': 2 * (remainingSpace / resizeableGridOptions.columns) + gutterWidth  + "px", 'padding': '0px'});
 		});
+	});
+
+	$('.resizeable-aspect-1').each(function(){
+		$( this ).children().each(function(){
+			$( this ).css({'height': singleColumnWidth});
+		});
+	});
+
+	$('.resizeable-row:not(:last-child)').each(function(){
+		var gutterWidth = getGutterWidth();
+		
+		$(this).css({'marginBottom': gutterWidth});
 	});
 }
 

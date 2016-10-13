@@ -12,3 +12,8 @@
 	display: inline-block;
 	float: left;
 }
+
+.resizeable-row {
+	display: inline-block;
+	width: 100%;
+}
