@@ -1,34 +1,42 @@
 body {
-	background: #cecece;
+	background: #40415a;
 }
 
 .resizeable-container {
-	background: #fff;
+	background: #d55161;
 	width: 60%;
 	margin-left: 20%;
-	padding: 20px;
-	border-radius: 5px;
+	padding: 50px;
+	border-radius: 10px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
 }
 
 .resizeable-item {
 	background: #f0f0f0;
+	height: 200px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+	border-radius: 10px;
 }
 
 .resizeableGutter {
 }
 
-.col-1 {
+.resizeable-col-md-1 {
 	width: 200px; 
-  padding-left: 0px;
-  margin-bottom: 38px;
-  transition: flex .7s;
 }
 
-.col-2 {
+.resizeable-col-md-2 {
 	width: 400px; 
 }
 
 .page-title {
 	margin-bottom: 50px;
-	color: #e23c26;
+	color: #fff;
+}
+
+.has-background {
+	background-size: cover;
+	background-repeat: no-repeat;
+	display: inline-block;
+	background-image: url('http://loremflickr.com/320/240');
 }
