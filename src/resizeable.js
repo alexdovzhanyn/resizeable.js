@@ -58,15 +58,12 @@ function updateGridItems() {
 		var remainingSpace = getRemainingSpace(this);
 		window.singleColumnWidth = remainingSpace / resizeableGridOptions.columns;
 
-		$(this).find('.resizeable-item.resizeable-col-' + screenSize + '-1').each(function(){
-			var currentElement = getElementInfo( $(this) );
-			$( this ).css({'width': remainingSpace / resizeableGridOptions.columns + "px"});
-		});
-
-		$(this).find('.resizeable-item.resizeable-col-' + screenSize + '-2').each(function(){
-			var currentElement = getElementInfo( $(this) );
-			$( this ).css({'width': 2 * (remainingSpace / resizeableGridOptions.columns) + gutterWidth  + "px", 'padding': '0px'});
-		});
+		for(i = 1; i < 13; i++) {
+			$(this).find('.resizeable-item.resizeable-col-' + screenSize + '-' + i).each(function(){
+				var currentElement = getElementInfo( $(this) );
+				$( this ).css({'width': (i * singleColumnWidth) + ((i - 1) * gutterWidth) + "px", 'padding': '0px'});
+			});
+		}
 	});
 
 	$('.resizeable-aspect-1').each(function(){
@@ -107,6 +104,7 @@ function screenHasResized() {
 $(document).ready(function(){
 	initializeGrid();
 	screenHasResized();
+	updateGridItems();
 });
 
 $(window).resize(function(){
