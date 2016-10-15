@@ -61,21 +61,23 @@ function updateGridItems() {
 		for(i = 1; i < 13; i++) {
 			$(this).find('.resizeable-item.resizeable-col-' + screenSize + '-' + i).each(function(){
 				var currentElement = getElementInfo( $(this) );
-				$( this ).css({'width': (i * singleColumnWidth) + ((i - 1) * gutterWidth) + "px", 'padding': '0px'});
+				$( this ).css({'width': (i * singleColumnWidth) + ((i - 1) * gutterWidth) + "px", 'padding': '0px', 'marginBottom': gutterWidth});
 			});
 		}
+	});
+
+	$('.resizeable-row:not(:last-child)').each(function(){
+		var gutterWidth = getGutterWidth();
+
+		$(this).find('.resizeable-item').each(function(){
+			$( this ).css({'marginBottom': gutterWidth});
+		});
 	});
 
 	$('.resizeable-aspect-1').each(function(){
 		$( this ).children().each(function(){
 			$( this ).css({'height': singleColumnWidth});
 		});
-	});
-
-	$('.resizeable-row:not(:last-child)').each(function(){
-		var gutterWidth = getGutterWidth();
-		
-		$(this).css({'marginBottom': gutterWidth});
 	});
 }
 
